@@ -5,10 +5,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Audio Encrypter</title>
-  <link rel="stylesheet" href="styles/main.scss">
-  <script src="app/app.ts"></script>
+  <link rel="stylesheet" href="styles/main.styl">
+  <script>require('./app/app.ts');</script>
 </head>
 <body>
-  <h1>Cześć</h1>
+  <h1>Audio Encrypter</h1>
+  <div class="controls">
+    <button id="start-recording">Start</button>
+    <button id="stop-recording">Stop</button>
+    <audio id="audio-player"></audio>
+  </div>
+  <div class="messages">
+    <div class="message">
+      <h2>Original Message</h2>
+      <textarea id="original"></textarea>
+      <button id="play-original">Play</button>
+    </div>
+    <div class="message">
+      <h2>Encrypted Message</h2>
+      <textarea id="encrypted"></textarea>
+      <button id="play-encrypted">Play</button>
+    </div>
+  </div>
 </body>
 </html>

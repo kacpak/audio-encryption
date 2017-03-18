@@ -1,0 +1,82 @@
+@import "../../node_modules/normalize.css/normalize.css";
+@import "./variables.styl";
+
+body {
+  background: bgColor;
+  color: textColor;
+  padding: 1em;
+}
+
+body > h1 {
+  border-bottom: 1px dashed black;
+  margin-top: 0;
+  padding: .5em;
+}
+
+$clearfix {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+button {
+  display: inline-block;
+  margin-bottom: 0;
+  font-weight: bold;
+  text-align: center;
+  vertical-align: middle;
+  touch-action: manipulation;
+  cursor: pointer;
+  border: 1px solid textColor;
+  white-space: nowrap;
+  padding: .2em .5em;
+  background: buttonBg;
+  border-radius: .5em;
+
+  &:hover, &:focus {
+    background: buttonBgActive;
+    color: buttonBg;
+    text-decoration: none;
+  }
+}
+
+.controls {
+  & {
+    margin-bottom: 1em;
+  }
+}
+
+.messages {
+  & {
+    display: flex;
+
+    @media(max-width: 768px) {
+      flex-direction: column;
+    }
+  }
+
+  & > .message {
+    flex: 1;
+    margin: .5em;
+  }
+}
+
+.message {
+  $ {
+    @extend $clearfix;
+  }
+
+  > textarea {
+    width: 100%;
+    min-height: 400px;
+  }
+
+  > button {
+    float: right;
+  }
+}
