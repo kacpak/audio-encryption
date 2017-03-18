@@ -1,9 +1,9 @@
 @import "../../node_modules/normalize.css/normalize.css";
-@import "./variables.styl";
+@import "./variables.less";
 
 body {
-  background: bgColor;
-  color: textColor;
+  background: @bgColor;
+  color: @textColor;
   padding: 1em;
 }
 
@@ -13,9 +13,8 @@ body > h1 {
   padding: .5em;
 }
 
-$clearfix {
-  &:before,
-  &:after {
+.clearfix {
+  &:before, &:after {
     content: " ";
     display: table;
   }
@@ -32,15 +31,15 @@ button {
   vertical-align: middle;
   touch-action: manipulation;
   cursor: pointer;
-  border: 1px solid textColor;
+  border: 1px solid @textColor;
   white-space: nowrap;
   padding: .2em .5em;
-  background: buttonBg;
+  background: @buttonBg;
   border-radius: .5em;
 
   &:hover, &:focus {
-    background: buttonBgActive;
-    color: buttonBg;
+    background: @buttonBgActive;
+    color: @buttonBg;
     text-decoration: none;
   }
 }
@@ -67,9 +66,7 @@ button {
 }
 
 .message {
-  $ {
-    @extend $clearfix;
-  }
+  &:extend(.clearfix);
 
   > textarea {
     width: 100%;
