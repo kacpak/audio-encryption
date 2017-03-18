@@ -1,36 +1,39 @@
-const electron = require('electron');
-const electronCompile = require('electron-compile');
-const path = require('path');
-
-const {app, BrowserWindow} = electron;
-const {enableLiveReload} = electronCompile;
-const appRoot = path.join(__dirname);
-
-enableLiveReload();
-electronCompile.init(appRoot, require.resolve('./main'));
+import { app, BrowserWindow } from 'electron';
+import { enableLiveReload } from 'electron-compile';
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
-let win;
+let mainWindow: Electron.BrowserWindow | null = null;
 
-function createWindow() {
+const isDevMode = process.execPath.match(/[\\/]electron/);
+
+if (isDevMode) {
+  enableLiveReload();
+}
+
+const createWindow = async () => {
   // Create the browser window.
-  win = new BrowserWindow({width: 800, height: 600});
+  mainWindow = new BrowserWindow({
+    width: 800,
+    height: 600,
+  });
 
   // and load the index.html of the app.
-  win.loadURL(`file://${__dirname}/src/index.html`);
+  mainWindow.loadURL(`file://${__dirname}/index.html`);
 
   // Open the DevTools.
-  win.webContents.openDevTools();
+  if (isDevMode) {
+    mainWindow.webContents.openDevTools();
+  }
 
   // Emitted when the window is closed.
-  win.on('closed', () => {
+  mainWindow.on('closed', () => {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
-    win = null;
+    mainWindow = null;
   });
-}
+};
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -49,7 +52,10 @@ app.on('window-all-closed', () => {
 app.on('activate', () => {
   // On OS X it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
-  if (win === null) {
+  if (mainWindow === null) {
     createWindow();
   }
 });
+
+// In this file you can include the rest of your app's specific main process
+// code. You can also put them in separate files and import them here.

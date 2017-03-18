@@ -1,19 +1,24 @@
 {
   "name": "audio-encryption",
   "version": "0.0.1",
-  "main": "main.js",
+  "main": "src/index.ts",
   "repository": "git@github.com:kacpak/audio-encryption.git",
   "author": "Mateusz Kasprzak <kacpak@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "test": "tslint src"
   },
   "dependencies": {
+    "@types/electron": "^1.4.34",
+    "@types/node": "^7.0.8",
     "electron-compile": "^6.1.3",
-    "electron-prebuilt-compile": "^1.6.2"
+    "electron-prebuilt-compile": "^1.6.2",
+    "tslib": "^1.6.0"
   },
   "devDependencies": {
     "electron-compilers": "^5.5.1",
+    "tslint": "^4.5.1",
     "typescript": "^2.2.1"
   }
 }
