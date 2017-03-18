@@ -8,7 +8,7 @@
   "author": "Mateusz Kasprzak <kacpak@gmail.com>",
   "license": "MIT",
   "scripts": {
-    "start": "electron-forge start",
+    "start": "electron .",
     "package": "electron-forge package",
     "make": "electron-forge make",
     "lint": "tslint src"
@@ -29,16 +29,9 @@
   "config": {
     "forge": {
       "make_targets": {
-        "win32": [
-          "squirrel"
-        ],
-        "darwin": [
-          "zip"
-        ],
-        "linux": [
-          "deb",
-          "rpm"
-        ]
+        "win32": ["squirrel"],
+        "darwin": ["zip"],
+        "linux": ["deb", "rpm"]
       },
       "electronPackagerConfig": {},
       "electronWinstallerConfig": {},
