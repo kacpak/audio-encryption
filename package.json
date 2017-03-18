@@ -13,11 +13,11 @@
     "@types/electron": "^1.4.34",
     "@types/node": "^7.0.8",
     "electron-compile": "^6.1.3",
-    "electron-prebuilt-compile": "^1.6.2",
+    "recordrtc": "^5.4.1",
     "tslib": "^1.6.0"
   },
   "devDependencies": {
-    "electron-compilers": "^5.5.1",
+    "electron-prebuilt-compile": "^1.6.2",
     "tslint": "^4.5.1",
     "typescript": "^2.2.1"
   }

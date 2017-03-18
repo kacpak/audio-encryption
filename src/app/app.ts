@@ -1,3 +1,5 @@
+import {Audio} from './audio';
+
 class Greeter {
   constructor(private name: string) {        
   }
