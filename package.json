@@ -1,7 +1,7 @@
 {
   "name": "audio-encryption",
   "description": "Audio to text encryption tool",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "main": "src/index.ts",
   "repository": "git@github.com:kacpak/audio-encryption.git",
@@ -29,9 +29,16 @@
   "config": {
     "forge": {
       "make_targets": {
-        "win32": ["squirrel"],
-        "darwin": ["zip"],
-        "linux": ["deb", "rpm"]
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
       },
       "electronPackagerConfig": {},
       "electronWinstallerConfig": {},
