@@ -1,0 +1,16 @@
+{
+  "env": {
+    "development": {
+      "text/typescript": {
+        "sourceMap": true,
+        "module": "es6",
+        "target": "es6"
+      }
+    },
+    "production": {
+      "text/typescript": {
+        "sourceMap": false
+      }
+    }
+  }
+}
