@@ -1,0 +1,5 @@
+<div class="controls">
+  <button (click)="startRecording()">Start recording</button>
+  <button (click)="stopRecording()">Stop recording</button>
+  <span [hidden]="!isRecordingInProgress">recording in progress...</span>
+</div>

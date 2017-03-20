@@ -6,6 +6,7 @@ import { enableLiveReload } from 'electron-compile';
 let mainWindow: Electron.BrowserWindow | null = null;
 
 const isDevMode = process.execPath.match(/[\\/]electron/);
+process.env.isDevMode = !!isDevMode;
 
 if (isDevMode) {
   enableLiveReload();

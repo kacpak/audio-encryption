@@ -8,6 +8,7 @@
     "noImplicitReturns": true,
     "suppressImplicitAnyIndexErrors": true,
     "strictNullChecks": true,
+    "experimentalDecorators": true,
     "noUnusedLocals": true,
     "noImplicitThis": true,
     "noUnusedParameters": true,
@@ -16,10 +17,15 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "pretty": true,
-    "target": "es2015"
+    "target": "es2015",
+    "outDir": "dist",
+    "emitDecoratorMetadata": true
   },
   "formatCodeOptions": {
     "indentSize": 2,
     "tabSize": 2
-  }
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }
