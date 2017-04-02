@@ -1,6 +1,23 @@
 {
   "env": {
     "development": {
+     "application/javascript": {
+        "presets": [
+          [
+            "env",
+            {
+              "targets": {
+                "electron": "1.6.2"
+              }
+            }
+          ],
+          "react"
+        ],
+        "plugins": [
+          "transform-async-to-generator"
+        ],
+        "sourceMaps": "inline"
+      },
       "text/typescript": {
         "removeComments": false,
         "preserveConstEnums": true,
@@ -22,6 +39,23 @@
       }
     },
     "production": {
+      "application/javascript": {
+        "presets": [
+          [
+            "env",
+            {
+              "targets": {
+                "electron": "1.6.2"
+              }
+            }
+          ],
+          "react"
+        ],
+        "plugins": [
+          "transform-async-to-generator"
+        ],
+        "sourceMaps": "none"
+      },
       "text/typescript": {
         "removeComments": false,
         "preserveConstEnums": true,

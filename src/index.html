@@ -6,26 +6,37 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Audio Encrypter</title>
   <link rel="stylesheet" href="styles/main.less">
-  <script>require('./app/app.ts');</script>
+  <!--<script>require('./app/app.ts');</script>-->
 </head>
 <body>
-  <h1>Audio Encrypter</h1>
-  <div class="controls">
-    <button id="start-recording">Start</button>
-    <button id="stop-recording">Stop</button>
-    <audio id="audio-player"></audio>
-  </div>
-  <div class="messages">
-    <div class="message">
-      <h2>Original Message</h2>
-      <textarea id="original"></textarea>
-      <button id="play-original">Play</button>
-    </div>
-    <div class="message">
-      <h2>Encrypted Message</h2>
-      <textarea id="encrypted"></textarea>
-      <button id="play-encrypted">Play</button>
-    </div>
-  </div>
+  <!--<h1>Audio Encrypter</h1>-->
+  <!--<div class="controls">-->
+    <!--<button id="start-recording">Start</button>-->
+    <!--<button id="stop-recording">Stop</button>-->
+    <!--<audio id="audio-player"></audio>-->
+  <!--</div>-->
+  <!--<div class="messages">-->
+    <!--<div class="message">-->
+      <!--<h2>Original Message</h2>-->
+      <!--<textarea id="original"></textarea>-->
+      <!--<button id="play-original">Play</button>-->
+    <!--</div>-->
+    <!--<div class="message">-->
+      <!--<h2>Encrypted Message</h2>-->
+      <!--<textarea id="encrypted"></textarea>-->
+      <!--<button id="play-encrypted">Play</button>-->
+    <!--</div>-->
+  <!--</div>-->
+  <div id="app"></div>
+
+  <script>
+    import Vue from 'vue';
+    import App from './App';
+    const app = new Vue({
+      el: '#app',
+      template: '<App/>',
+      components: { App }
+    })
+  </script>
 </body>
 </html>
