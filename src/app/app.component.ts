@@ -6,11 +6,11 @@ import { Component } from '@angular/core';
   templateUrl: path.join(__dirname, 'app.component.html')
 })
 export class AppComponent {
-  msg: string;
+  msg: string = ' ';
 
   onRecorded(dataURL: string) {
     // this.msg = dataURL;
     this.msg = 'hahahahaa';
-    // console.log(this.msg);
+    console.log(this.msg);
   }
 }
