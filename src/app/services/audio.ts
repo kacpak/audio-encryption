@@ -6,7 +6,7 @@ export class Audio {
   constructor() {
     navigator.mediaDevices.getUserMedia({ audio: true })
       .then(audioStream => this.onMicrophoneAvailable(audioStream))
-      .catch(error => this.onError(error));
+      .catch(error => Audio.onError(error));
   }
 
   startRecording() {
@@ -18,7 +18,7 @@ export class Audio {
       this.recordRTC.stopRecording((audioURL: string) => {
         this.recordRTC.getDataURL((dataURL: string) => resolve(dataURL));
       });
-    })
+    });
   }
 
   private onMicrophoneAvailable(audioStream: MediaStream) {
@@ -27,7 +27,7 @@ export class Audio {
     });
   }
 
-  private onError(error: Error) {
+  private static onError(error: Error) {
     console.error('Error getting audio stream!', error);
   }
 }

@@ -1,9 +1,11 @@
 export class Cipher {
-  encode(message: string, shift: number): string {
+  encrypt(message: string, encryptionKey: string): string {
+    const shift = parseFloat(encryptionKey);
     return this.shift(message, shift);
   }
 
-  decode(message: string, shift: number): string {
+  decrypt(message: string, encryptionKey: string): string {
+    const shift = parseFloat(encryptionKey);
     return this.shift(message, -shift);
   }
 
