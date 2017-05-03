@@ -1,10 +1,10 @@
-@import "../../node_modules/normalize.css/normalize.css";
+@import "../../node_modules/bootstrap/less/bootstrap";
 @import "./variables.less";
 
 body {
   background: @bgColor;
   color: @textColor;
-  padding: 1em;
+  padding: 1em
 }
 
 body > h1 {
@@ -20,27 +20,6 @@ body > h1 {
   }
   &:after {
     clear: both;
-  }
-}
-
-button {
-  display: inline-block;
-  margin-bottom: 0;
-  font-weight: bold;
-  text-align: center;
-  vertical-align: middle;
-  touch-action: manipulation;
-  cursor: pointer;
-  border: 1px solid @textColor;
-  white-space: nowrap;
-  padding: .2em .5em;
-  background: @buttonBg;
-  border-radius: .5em;
-
-  &:hover, &:focus {
-    background: @buttonBgActive;
-    color: @buttonBg;
-    text-decoration: none;
   }
 }
 
