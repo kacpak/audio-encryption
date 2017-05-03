@@ -5,7 +5,8 @@ function onLoad() {
   // Setup recording
   const startButton = document.querySelector('#start-recording') as HTMLButtonElement;
   const stopButton = document.querySelector('#stop-recording') as HTMLButtonElement;
-  const audioController = new AudioController(startButton, stopButton);
+  const timerElement = document.querySelector('#clock') as HTMLElement;
+  const audioController = new AudioController(startButton, stopButton, timerElement);
 
   // Setup encryption handling
   const encryptedTextArea = document.querySelector('#encrypted-message') as HTMLTextAreaElement;

@@ -1,16 +1,59 @@
 @import "../../node_modules/bootstrap/less/bootstrap";
 @import "./variables.less";
 
+
+
 body {
   background: @bgColor;
   color: @textColor;
-  padding: 1em
+  padding: 1em;
 }
 
 body > h1 {
   border-bottom: 1px dashed black;
   margin-top: 0;
   padding: .5em;
+}
+
+.key button{
+  height: 3em;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+}
+
+.btn-primary {
+  color: @btnTextColor;
+  background-color: @btnBackgColor;
+  border-color: @btnTextColor;
+}
+
+.btn-default {
+  color: @btnTextColor;
+  background-color: @btnDfltBackgColor;
+  border-color: @btnTextColor;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary.active {
+  background-color: @btnBackgColor;
+  border-color: @textColor;
+  color: white;
+}
+
+.btn-default:hover, .btn-default:focus, .btn-default:active, .btn-default.active {
+  background-color: @btnDfltBackgColor;
+  border-color: @textColor;
+  color: white;
+}
+
+
+.input-group-addon {
+  background-color: @bgColor;
+  border: hidden;
+}
+
+
+.form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
+  background-color: @bgColor;
 }
 
 .clearfix {
@@ -42,6 +85,7 @@ body > h1 {
     flex: 1;
     margin: .5em;
   }
+
 }
 
 .message {
@@ -49,10 +93,157 @@ body > h1 {
 
   > textarea {
     width: 100%;
-    min-height: 400px;
+    min-height: 275px;
+    max-height: 275px;
+
   }
 
   > button {
     float: right;
+  }
+}
+
+.form-control:focus {
+  border-color: @textColor;
+  box-shadow: 0 0 1px 1px @bgColor, 0 0 1px @textColor;
+}
+
+#key {
+  width: 70%;
+  overflow: hidden;//
+}
+
+#test {
+  width: 100%;
+  overflow: hidden;
+}
+
+
+span {
+  padding-left: 1em;
+}
+
+#play-message {
+  float: right;
+  width: 40%;
+}
+
+
+
+
+
+//Key placeholder/sdd
+// First, pass in the important variables.gfffgffds
+.adaptive_placeholder(@height, @radius, @margin: 1em, @border: 1px) {
+  @borders: (@border * 2); // <- To avoid repeating below
+  box-sizing: border-box;  // <- Important for accurate sizing
+  width: 100%;             // <- Could be almost anything
+  height: ~"calc(@{height} + @{borders})";
+  margin: @margin 0 @margin;
+  padding: @margin;
+  border: @border solid #ccc;
+  border-bottom-left-radius: @radius;
+  border-top-left-radius: @radius;
+  background: #fff;
+  resize: none;  // <- For textareas
+  outline: none; // <- Because ugly
+  //
+  // Following block controls all the color change
+  //
+  &[required] {
+    &:focus {
+      border-color: @textColor;
+      + label {
+        &[placeholder] {
+          &:before {
+            color: @textColor;
+          }
+        }
+      }
+    }
+    //
+    // Following block selects label directly adjacent to input
+    //
+    &:focus,
+    &:valid {
+      + label {
+        &[placeholder] {
+          &:before {
+            transition-duration: .2s;
+            //
+            // Following lines move placeholder out of the way
+            //
+            transform: translate(0, (@margin * -1.5)) scale(.9, .9);
+          }
+        }
+      }
+    }
+    //
+    // Following block injects string from label's 'alt' attr.
+    // It comes before the other 'content' property so I can
+    // override it. Uses "invalid" pseudo-selector to know
+    // when to do that.
+    //
+    &:invalid {
+      + label {
+        &[placeholder] {
+          &[alt] {
+            &:before {
+              content: attr(alt); // Content property 1 of 2
+            }
+          }
+        }
+      }
+    }
+    + label {
+      &[placeholder] {
+        display: block;
+        pointer-events: none; // Allows clicking thru label/dd
+        line-height: @margin * 1.25;
+        // Following pulls label into position
+        margin-top: ~"calc(-@{height} - @{borders})";
+        // Following offsets that above
+        margin-bottom: ~"calc((@{height} - @{margin}) + @{borders})";
+        //
+        // Following ':before' is needed to switch between
+        // different strings.
+        //
+        &:before {
+          content: attr(placeholder); // Content property 2 of 2
+          display: inline-block;
+          margin: 0 ~"calc(@{margin} + @{borders})";
+          padding: 0 2px;
+          color: @textColor;
+          white-space: nowrap;
+          transition: .3s ease-in-out;
+          //
+          // Following lines lets me use solid color as bkg img.
+          // This lets me size bkg to something more sublte
+          //
+          background-image: linear-gradient(to bottom, #fff, #fff);
+          background-size: 100% 5px;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+      }
+    }
+  }
+}
+//
+// Following block is how I call the above function/
+//
+input {
+  @height: 3em;
+  &[type="text"] {
+    .adaptive_placeholder(@height, 0.5em);
+  }
+}
+
+.key {
+  display: flex;
+  align-items: baseline;
+
+  > form {
+    flex: 1;
   }
 }
