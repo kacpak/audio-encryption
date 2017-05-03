@@ -6,7 +6,7 @@ export class AudioController {
   private seconds: number;
   private minutes: number;
   private hours: number;
-  private timeoutId: number;
+  private intervalId: number;
 
   constructor(startRecordingButton: HTMLButtonElement, stopRecordingButton: HTMLButtonElement, private clockElement: HTMLElement) {
     this.audio = new Audio();
@@ -18,12 +18,12 @@ export class AudioController {
     this.seconds = 0;
     this.minutes = 0;
     this.hours = 0;
-    this.timeoutId = setInterval(() => this.updateTimer(), 1000);
+    this.intervalId = setInterval(() => this.updateTimer(), 1000);
     this.audio.startRecording();
   }
 
   stopRecording(): Promise<string> {
-    clearInterval(this.timeoutId);
+    clearInterval(this.intervalId);
     return this.audio.stopRecording()
       .then(data => this.originalMessageHash = data);
   }
