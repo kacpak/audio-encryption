@@ -9,22 +9,51 @@
   <script>require('./app/init.ts');</script>
 </head>
 <body>
-  <h1>Audio Encrypter</h1>
-  <div class="controls">
-    <button id="start-recording" class="btn btn-primary">Start</button>
-    <button id="stop-recording" class="btn btn-default">Stop</button>
-    <button id="encrypt-recording" class="btn btn-default">Zaszyfruj nagranie</button>
-    <audio id="audio-player"></audio>
-  </div>
-  <div class="messages">
-    <div class="message">
-      <h2>Encrypted Message</h2>
-      <textarea id="encrypted-message"></textarea>
-      <label>
-        Klucz:
-        <input type="text" id="encryption-key">
-      </label>
-      <button id="play-message" class="btn btn-primary">Play</button>
+  <div class="container-fluid">
+    <div class="col-xs-6">
+      <h1>Encrypt</h1>
+      <div class="controls">
+        <div class="input-group">
+          <span class="input-group-btn">
+            <button id="start-recording" class="btn btn-primary">Start</button>
+            <button id="stop-recording" class="btn btn-default">Stop</button>
+          </span>
+          <span class="input-group-addon" id="clock">00:00:00</span>
+          <button id="play-message" class="btn btn-default">Play</button>
+        </div>
+        <div class="key">
+          <form>
+            <input required="" type="text">
+            <label alt="Encryption key" placeholder="Encryption key"></label>
+          </form>
+          <button id="encrypt-recording" class="btn btn-primary">Encrypt</button>
+        </div>
+        <audio id="audio-player"></audio>
+      </div>
+      <div class="messages">
+        <div class="message">
+          <label for="encrypted-message">Encrypted message</label><textarea readonly class="form-control" id="encrypted-message"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-xs-6">
+      <h1>Decrypt</h1>
+      <div class="controls">
+        <div class="messages">
+          <div class="message">
+            <label for="encrypted-message2">Message to decrypt</label>
+            <textarea class="form-control" id="encrypted-message2"></textarea>
+          </div>
+        </div>
+        <div class="key">
+          <form>
+            <input required='' type='text'>
+            <label alt='Key' placeholder='Key'></label>
+          </form>
+          <button id="play-message2" class="btn btn-primary">Play</button>
+        </div>
+    </div>
     </div>
   </div>
 </body>
