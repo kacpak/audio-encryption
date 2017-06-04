@@ -7,36 +7,40 @@ export class Util {
   static fixedPermutationVector = [16, 7, 20, 21, 29, 12, 28, 17, 1, 15, 23, 26, 5, 18, 31,
     10, 2, 8, 24, 14, 32, 27, 3, 9, 19, 13, 30, 6, 22, 11, 4, 25];
 
-  static addPaddingToBinary(value, sizeRequired) {
-    if (value.length() < sizeRequired) {
-      let temp = "";
-      for (let i = 0; i < sizeRequired; i++)
-        temp += "0";
+  static addPaddingToBinary(value: string, sizeRequired: number): string {
+    if (value.length < sizeRequired) {
+      let temp: string = '';
+      for (let i: number = 0; i < sizeRequired; i++) {
+        temp += '0';
+      }
       temp += value;
-      return temp.substring(temp.length() - sizeRequired, temp.length());
+      return temp.substring(temp.length - sizeRequired, temp.length);
     }
     return value;
   }
 
-  static xor(aS, bS) {
-    if (aS.length() != bS.length())
+  static xor(aS: string, bS: string): string {
+    if (aS.length != bS.length) {
       throw 'IllegalArgumentException';
+    }
 
-    let result = "";
+    let result: string = '';
 
-    for (let i = 0; i < aS.length(); i++) {
-      if (aS.charAt(i) != bS.charAt(i))
-        result += "1";
-      else
-        result += "0";
+    for (let i: number = 0; i < aS.length; i++) {
+      if (aS.charAt(i) != bS.charAt(i)) {
+        result += '1';
+      }
+      else {
+        result += '0';
+      }
     }
 
     return result;
   }
 
-  static transformBitsByVector(inputValueS, transformVector) {
-    let output = "";
-    for (let i = 0; i < transformVector.length; i++) {
+  static transformBitsByVector(inputValueS: string, transformVector: number[]): string {
+    let output: string = '';
+    for (let i: number = 0; i < transformVector.length; i++) {
       output += inputValueS.charAt(transformVector[i] - 1);
     }
 

@@ -58,49 +58,48 @@ export class SBox {
     [2, 1, 14, 7, 4, 10, 8, 13, 15, 12, 9, 0, 3, 5, 6, 11]
   ];
 
-  static convert(sBoxID, inputValueS) {
-    let inputValue = parseInt(inputValueS, 2);
-    let temp1 = inputValue;
-    let temp2 = inputValue;
+  static convert(sBoxID: number, inputValueS: string): string {
+    let inputValue: number = parseInt(inputValueS, 2);
+    let temp1: number = inputValue;
+    let temp2: number = inputValue;
 
     temp1 &= 0b100000;
     temp1 = temp1 >>> 4;
 
     temp2 &= 0b000001;
 
-    let row = temp1 | temp2;
+    let row: number = temp1 | temp2;
 
-    let temp3 = inputValue;
-
+    let temp3: number = inputValue;
     temp3 &= 0b011111;
-    let col = temp3 >>> 1;
+    let col: number = temp3 >>> 1;
 
-    let returnValue = 0;
+    let returnValue: number = 0;
 
     switch (sBoxID) {
       case 1:
         returnValue = SBox.sbox1[row][col];
         break;
       case 2:
-        returnValue = sbox2[row][col];
+        returnValue = SBox.sbox2[row][col];
         break;
       case 3:
-        returnValue = sbox3[row][col];
+        returnValue = SBox.sbox3[row][col];
         break;
       case 4:
-        returnValue = sbox4[row][col];
+        returnValue = SBox.sbox4[row][col];
         break;
       case 5:
-        returnValue = sbox5[row][col];
+        returnValue = SBox.sbox5[row][col];
         break;
       case 6:
-        returnValue = sbox6[row][col];
+        returnValue = SBox.sbox6[row][col];
         break;
       case 7:
-        returnValue = sbox7[row][col];
+        returnValue = SBox.sbox7[row][col];
         break;
       case 8:
-        returnValue = sbox8[row][col];
+        returnValue = SBox.sbox8[row][col];
         break;
 
       default:

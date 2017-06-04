@@ -1,66 +1,70 @@
+import {Rounds} from './Rounds';
+import {IP} from './IP';
+
 export class DES {
 
-  static encrypt(binaryString, roundKeys) {
-    let result = "";
-    let blocks = splitIntoBlocks(binaryString);
+  static encrypt(binaryString: string, roundKeys: string[]): string {
+    let result: string = '';
+    let blocks: string[] = DES.splitIntoBlocks(binaryString);
 
     for (let b of blocks) {
-      result += encryptBlock(b, roundKeys);
+      result += DES.encryptBlock(b, roundKeys);
     }
 
     return result;
   }
 
-  static decrypt(binaryString, roundKeys) {
-    for (let i = 0; i < roundKeys.length / 2; i++) {
-      let temp = roundKeys[i];
+  static decrypt(binaryString: string, roundKeys: string[]): string {
+    for (let i: number = 0; i < roundKeys.length / 2; i++) {
+      let temp: string = roundKeys[i];
       roundKeys[i] = roundKeys[roundKeys.length - i - 1];
       roundKeys[roundKeys.length - i - 1] = temp;
     }
 
-    let result = "";
-    let blocks = splitIntoBlocks(binaryString);
+    let result = '';
+    let blocks = DES.splitIntoBlocks(binaryString);
 
     for (let b of blocks) {
-      result += decryptBlock(b, roundKeys);
+      result += DES.decryptBlock(b, roundKeys);
     }
 
     return result;
   }
 
-  static splitIntoBlocks(binaryString) {
-    let bin = "";
-    let binaryBlocks = new Array();
-    for (let i = 0; i < binaryString.length(); i++) {
+  static splitIntoBlocks(binaryString: string): string[] {
+    let bin: string = '';
+    let binaryBlocks: string[] = [];
+    for (let i: number = 0; i < binaryString.length; i++) {
       bin += binaryString.charAt(i);
-      if (bin.length() == 64) {
+      if (bin.length == 64) {
         binaryBlocks.push(bin);
-        bin = "";
+        bin = '';
       }
     }
 
-    if (bin.length() != 0) {
-      while (bin.length() != 64)
-        bin = "0" + bin;
+    if (bin.length != 0) {
+      while (bin.length != 64) {
+        bin = '0' + bin;
+      }
       binaryBlocks.push(bin);
     }
 
     return binaryBlocks;
   }
 
-  static encryptBlock(binaryStringBlock, roundKeys) {
+  static encryptBlock(binaryStringBlock: string, roundKeys: string[]): string {
 
-    let ip = IP.initialPermutation(binaryStringBlock);
+    let ip: string = IP.initialPermutation(binaryStringBlock);
 
-    let halves = Rounds.splitInHalf(ip);
-    let halvesTemp = new Array(2);
-    for (let j = 0; j < 16; j++) {
+    let halves: string[] = Rounds.splitInHalf(ip);
+    let halvesTemp: string[] = new Array(2);
+    for (let j: number = 0; j < roundKeys.length; j++) {
       halvesTemp = Rounds.round(halves[0], halves[1], roundKeys[j]);
       halves = halvesTemp;
     }
 
     //zamiana połówek stronami
-    let temp = halves[0];
+    let temp: string = halves[0];
     halves[0] = halves[1];
     halves[1] = temp;
 
@@ -69,8 +73,7 @@ export class DES {
     return IP.inversePermutation(temp);
   }
 
-  static decryptBlock(binaryStringBlock, roundKeys) {
-
-    return encryptBlock(binaryStringBlock, roundKeys);
+  static decryptBlock(binaryStringBlock: string, roundKeys: string[]): string {
+    return DES.encryptBlock(binaryStringBlock, roundKeys);
   }
 }
