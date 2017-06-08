@@ -29,8 +29,7 @@ export class Util {
     for (let i: number = 0; i < aS.length; i++) {
       if (aS.charAt(i) != bS.charAt(i)) {
         result += '1';
-      }
-      else {
+      } else {
         result += '0';
       }
     }

@@ -5,7 +5,7 @@ export class DES {
 
   static encrypt(binaryString: string, roundKeys: string[]): string {
     let result: string = '';
-    let blocks: string[] = DES.splitIntoBlocks(binaryString);
+    const blocks: string[] = DES.splitIntoBlocks(binaryString);
 
     for (let b of blocks) {
       result += DES.encryptBlock(b, roundKeys);
@@ -33,7 +33,7 @@ export class DES {
 
   static splitIntoBlocks(binaryString: string): string[] {
     let bin: string = '';
-    let binaryBlocks: string[] = [];
+    const binaryBlocks: string[] = [];
     for (let i: number = 0; i < binaryString.length; i++) {
       bin += binaryString.charAt(i);
       if (bin.length == 64) {
