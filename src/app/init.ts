@@ -10,9 +10,14 @@ function onLoad() {
 
   // Setup encryption handling
   const encryptedTextArea = document.querySelector('#encrypted-message') as HTMLTextAreaElement;
+  const toDecryptTextArea = document.querySelector('#encrypted-message2') as HTMLTextAreaElement;
   const encryptionKey = document.querySelector('#encryption-key') as HTMLInputElement;
   const decryptionKey = document.querySelector('#decryption-key') as HTMLInputElement;
-  const encryptionController = new EncryptionController(encryptedTextArea, encryptionKey, decryptionKey, loadingIndicator);
+  const encryptionController = new EncryptionController(
+    encryptedTextArea, encryptionKey,
+    toDecryptTextArea, decryptionKey,
+    loadingIndicator
+  );
 
   const encryptMessageButton = document.querySelector('#encrypt-recording') as HTMLButtonElement;
   encryptMessageButton.addEventListener('click', () => {

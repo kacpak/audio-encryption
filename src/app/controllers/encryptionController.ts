@@ -6,12 +6,23 @@ export interface LoadingIndicator {
 
 export class EncryptionController {
   constructor(private encryptedTextArea: HTMLTextAreaElement, private encryptionKeyInput: HTMLInputElement,
-              private decryptionKeyInput: HTMLInputElement, private loadingIndicator: LoadingIndicator) {}
+              private toDecryptTextArea: HTMLTextAreaElement, private decryptionKeyInput: HTMLInputElement,
+              private loadingIndicator: LoadingIndicator) {}
 
   async getOriginalMessage(): Promise<string> {
     this.loadingIndicator('show');
-    const originalText = await DES.decrypt(this.encryptedTextArea.value, this.decryptionKeyInput.value);
+    const originalText = await DES.decrypt(this.toDecryptTextArea.value, this.decryptionKeyInput.value);
     this.loadingIndicator('hide');
+
+    // console.groupCollapsed('encrypted -> plain');
+    // console.log('encrypted:');
+    // console.log(this.toDecryptTextArea.value);
+    // console.log('key:');
+    // console.log(this.decryptionKeyInput.value);
+    // console.log('decrypted:');
+    // console.log(originalText);
+    // console.groupEnd();
+
     return originalText;
   }
 
@@ -19,5 +30,14 @@ export class EncryptionController {
     this.loadingIndicator('show');
     this.encryptedTextArea.value = await DES.encrypt(message, this.encryptionKeyInput.value);
     this.loadingIndicator('hide');
+
+    // console.groupCollapsed('plain -> encrypted');
+    // console.log('plain:');
+    // console.log(message);
+    // console.log('key:');
+    // console.log(this.encryptionKeyInput.value);
+    // console.log('encrypted:');
+    // console.log(this.encryptedTextArea.value);
+    // console.groupEnd();
   }
 }
