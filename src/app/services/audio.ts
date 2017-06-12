@@ -15,7 +15,7 @@ export class Audio {
 
   stopRecording(): Promise<string> {
     return new Promise(resolve => {
-      this.recordRTC.stopRecording((audioURL: string) => {
+      this.recordRTC.stopRecording(() => {
         this.recordRTC.getDataURL((dataURL: string) => resolve(dataURL));
       });
     });

@@ -1,30 +1,23 @@
-import {DES} from '../des/DES';
-import {KeyGenerator} from '../des/KeyGenerator';
-import {TextConversion} from '../des/TextConversion';
-import md5 = require('blueimp-md5');
+import DES from '../des';
+
+export interface LoadingIndicator {
+  (state: 'show'|'hide'): void;
+}
 
 export class EncryptionController {
-  roundKeys: string[];
+  constructor(private encryptedTextArea: HTMLTextAreaElement, private encryptionKeyInput: HTMLInputElement,
+              private decryptionKeyInput: HTMLInputElement, private loadingIndicator: LoadingIndicator) {}
 
-  constructor(private encryptedTextArea: HTMLTextAreaElement, private encryptionKeyInput: HTMLInputElement) {}
-
-  getOriginalMessage(): string {
-    this.generateRoundKeys();
-    const binaryMessage: string  = TextConversion.convertTextToBinary(this.encryptedTextArea.value);
-    const decryptedMessage: string = DES.decrypt(binaryMessage, this.roundKeys);
-    return TextConversion.convertBinaryToText(decryptedMessage).trim();
+  async getOriginalMessage(): Promise<string> {
+    this.loadingIndicator('show');
+    const originalText = await DES.decrypt(this.encryptedTextArea.value, this.decryptionKeyInput.value);
+    this.loadingIndicator('hide');
+    return originalText;
   }
 
-  setEncryptedText(message: string): void {
-    this.generateRoundKeys();
-    const binaryMessage: string  = TextConversion.convertTextToBinary(message);
-    const encryptedMessage = DES.encrypt(binaryMessage, this.roundKeys);
-    this.encryptedTextArea.value = TextConversion.convertBinaryToText(encryptedMessage);
-  }
-
-  generateRoundKeys(): void {
-    let hash: string = md5(this.encryptionKeyInput.value);
-    let key: string = TextConversion.convertHashToBinaryKey(hash);
-    this.roundKeys = KeyGenerator.generateKeys(key);
+  async setEncryptedText(message: string) {
+    this.loadingIndicator('show');
+    this.encryptedTextArea.value = await DES.encrypt(message, this.encryptionKeyInput.value);
+    this.loadingIndicator('hide');
   }
 }
