@@ -1,3 +1,4 @@
+import '../styles/main.less';
 import {AudioController} from './controllers/audioController';
 import {EncryptionController} from './controllers/encryptionController';
 

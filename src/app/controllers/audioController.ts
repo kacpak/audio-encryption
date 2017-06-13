@@ -6,7 +6,7 @@ export class AudioController {
   private seconds: number;
   private minutes: number;
   private hours: number;
-  private intervalId: number;
+  private intervalId: any;
 
   constructor(startRecordingButton: HTMLButtonElement, stopRecordingButton: HTMLButtonElement, private clockElement: HTMLElement) {
     this.audio = new Audio();
