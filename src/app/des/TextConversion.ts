@@ -10,14 +10,19 @@ export class TextConversion {
 
     //zamiana znaków na ciąg bitów gotowy do zaszyfrowania
     let binaryString: string = '';
+    let count: number = 0;
     for (let j: number = 0; j < text.length; j++) {
       let val: number = text.charCodeAt(j);
       for (let i: number = 0; i < 8; i++) { // zamieniamy znak na reprezentację binarną (robimy to 8 razy, by uzyskać 8 bitów)
         binaryString += ((val & 128) == 0 ? 0 : 1);
         val <<= 1;
       }
-    }
 
+      count++;
+    }
+    console.log(text.length);
+    console.log(count);
+    console.log(binaryString.length);
     return binaryString;
   }
 

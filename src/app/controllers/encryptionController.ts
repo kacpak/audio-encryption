@@ -1,4 +1,5 @@
 import DES from '../des';
+import Ceasar from '../ceasar';
 
 export interface LoadingIndicator {
   (state: 'show'|'hide'): void;
@@ -11,7 +12,8 @@ export class EncryptionController {
 
   async getOriginalMessage(): Promise<string> {
     this.loadingIndicator('show');
-    const originalText = await DES.decrypt(this.toDecryptTextArea.value, this.decryptionKeyInput.value);
+    // const originalText = await DES.decrypt(this.toDecryptTextArea.value, this.decryptionKeyInput.value);
+    const originalText = await Ceasar.decrypt(this.toDecryptTextArea.value, this.decryptionKeyInput.value);
     this.loadingIndicator('hide');
 
     // console.groupCollapsed('encrypted -> plain');
@@ -28,7 +30,8 @@ export class EncryptionController {
 
   async setEncryptedText(message: string) {
     this.loadingIndicator('show');
-    this.encryptedTextArea.value = await DES.encrypt(message, this.encryptionKeyInput.value);
+    this.encryptedTextArea.value = await Ceasar.encrypt(message, this.encryptionKeyInput.value);
+    // this.encryptedTextArea.value = await DES.encrypt(message, this.encryptionKeyInput.value);
     this.loadingIndicator('hide');
 
     // console.groupCollapsed('plain -> encrypted');
